@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:18
-    container_name: logichub-postgres
+    container_name: codex-postgres
     restart: unless-stopped
 
     environment:
@@ -10,14 +10,14 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     volumes:
-      - logichub_postgres_data:/var/lib/postgresql
+      - codex_postgres_data:/var/lib/postgresql
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
 
-    container_name: logichub-backend
+    container_name: codex-backend
     restart: unless-stopped
 
     environment:
@@ -33,4 +33,4 @@ services:
       - "8080:8080"
 
 volumes:
-  logichub_postgres_data:
+  codex_postgres_data:
